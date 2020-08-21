@@ -104,6 +104,8 @@ type Modules struct {
 	// EdgeStream indicates edgestream module config
 	// +Required
 	EdgeStream *EdgeStream `json:"edgeStream,omitempty"`
+	// CoapBus inidicate the CoapBus module config
+	CoapBus *CoapBus `json:"coapBus,omitempty"`
 }
 
 // Edged indicates the config fo edged module
@@ -429,4 +431,11 @@ type EdgeStream struct {
 	// WriteDeadline indicates write dead line (second)
 	// default 15
 	WriteDeadline int32 `json:"writeDeadline,omitempty"`
+}
+
+// CoapBus indicated the CoapBus module config
+type CoapBus struct {
+	//Enable indicates wheather the CoapBus is enabled
+	//default for now false
+	Enable bool `json:"enable,omitempty"`
 }
