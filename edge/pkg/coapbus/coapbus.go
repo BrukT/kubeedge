@@ -6,6 +6,7 @@ import (
 	"github.com/kubeedge/beehive/pkg/core"
 	beehiveContext "github.com/kubeedge/beehive/pkg/core/context"
 	coapconfig "github.com/kubeedge/kubeedge/edge/pkg/coapbus/config"
+	"github.com/kubeedge/kubeedge/edge/pkg/coapbus/test"
 	"github.com/kubeedge/kubeedge/edge/pkg/common/modules"
 	"github.com/kubeedge/kubeedge/pkg/apis/componentconfig/edgecore/v1alpha1"
 )
@@ -42,6 +43,7 @@ func (cb *coapbus) Enable() bool {
 
 func (cb *coapbus) Start() {
 	klog.Info("CoapBus inside the start function")
+	test.Begin()
 	cb.pubCloudMsgToEdge()
 }
 
