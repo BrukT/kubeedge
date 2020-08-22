@@ -16,6 +16,7 @@ import (
 
 	"github.com/kubeedge/beehive/pkg/core"
 	"github.com/kubeedge/kubeedge/edge/cmd/edgecore/app/options"
+	"github.com/kubeedge/kubeedge/edge/pkg/coapbus"
 	"github.com/kubeedge/kubeedge/edge/pkg/common/dbm"
 	"github.com/kubeedge/kubeedge/edge/pkg/devicetwin"
 	"github.com/kubeedge/kubeedge/edge/pkg/edged"
@@ -155,8 +156,10 @@ func registerModules(c *v1alpha1.EdgeCoreConfig) {
 	metamanager.Register(c.Modules.MetaManager)
 	servicebus.Register(c.Modules.ServiceBus)
 	edgestream.Register(c.Modules.EdgeStream, c.Modules.Edged.HostnameOverride, c.Modules.Edged.NodeIP)
-	test.Register(c.Modules.DBTest)
 	klog.Infof("register the CoapBus here %t", c.Modules.CoapBus.Enable)
+	coapbus.Register(c.Modules.CoapBus, c.Modules.Edged.HostnameOverride)
+	test.Register(c.Modules.DBTest)
+
 	// Nodte: Need to put it to the end, and wait for all models to register before executing
 	dbm.InitDBConfig(c.DataBase.DriverName, c.DataBase.AliasName, c.DataBase.DataSource)
 }

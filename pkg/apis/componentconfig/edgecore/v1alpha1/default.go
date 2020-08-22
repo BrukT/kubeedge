@@ -154,7 +154,7 @@ func NewDefaultEdgeCoreConfig() *EdgeCoreConfig {
 				WriteDeadline:           15,
 			},
 			CoapBus: &CoapBus{
-				Enable: false,
+				Enable: true,
 			},
 		},
 	}
