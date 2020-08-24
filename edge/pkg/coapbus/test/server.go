@@ -4,7 +4,6 @@ import (
 	"math/rand"
 	"net"
 	"strconv"
-	"strings"
 	"time"
 
 	"k8s.io/klog"
@@ -38,15 +37,14 @@ func Begin() {
 		n, addr, err := connection.ReadFromUDP(buffer)
 		klog.Infoln("CoapBus", addr, " -> ", string(buffer[0:n-1]))
 
-		if strings.TrimSpace(string(buffer[0:n])) == "STOP" {
-			klog.Infof("CoapBus Exiting UDP server!")
-			return
-		}
+		// if strings.TrimSpace(string(buffer[0:n])) == "STOP" {
+		// 	klog.Infof("CoapBus Exiting UDP server!")
+		// 	return
+		// }
 
-		data1 := []byte(strconv.Itoa(random(1, 1001)))
-		data := []byte("Hi I am the server")
+		data := []byte(strconv.Itoa(random(1, 1001)))
 		//swapped the data with data1 from the original just to chek inside
-		klog.Infof("data: %s \nresponse length: %d\n", string(data1), len(data))
+		klog.Infof("CoapBus number replied: %s \n", string(data))
 		_, err = connection.WriteToUDP(data, addr)
 		if err != nil {
 			klog.Error(err)
